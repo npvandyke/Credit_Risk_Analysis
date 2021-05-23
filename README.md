@@ -1,14 +1,12 @@
 # Credit_Risk_Analysis
-Using imbalanced-learn and scikit-learn libraries to build and evaluate machine-learning models predicting credit card risk using resampling. 
+Using Python imbalanced-learn and scikit-learn libraries to build and evaluate five different machine-learning models at predicting credit card risk, using resampling and ensemble techniques. 
+
 # Overview of the analysis: 
-Explain the purpose of this analysis.
+I've evaluated several different supervised machine-learning models for predicting credit risk using the credit card credit dataset from LendingClub, a a peer-to-peer lending services company. Given the imbalanced nature of the credit card credit dataset, with bad loan applications unsurprisingly accounting for a small percentage of the outcomes, the first three models involve oversampling, undersampling and combination techniques. These techniques adjust the class distribution of the two potential outcomes in the training datasets of the models in order to influence the fit and reduce bias toward the majority class. The distribution of the testing dataset remains random in order to evaluate the performance of the model. The last two models involve ensemble learning techniques, which combine multiple "weak learning" models to improve the accuracy and robustness of the model. The anticipated outcome is that at least one of these models will be sufficient at predicting bad loan applications despite the underrepresentation of bad loan application outcomes in the dataset used for training and testing these models. 
 
 # Results: 
 Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all six machine learning models. Use screenshots of youtputs to support your results.
 
-| y values counts, dataset | y values counts, RandomOverSampler | y values counts, SMOTE
-:-------------------------:|:-------------------------:|:---------------------------:
-![y.values_counts](Images/y.values_counts.png) | ![y.value_counts_RandomOverSampling](Images/y.value_counts_RandomOverSampling.png) | ![y.value_counts_SMOTE_Oversampling](Images/y.value_counts_SMOTE_Oversampling.png)
 
 | accuracy score and confusion matrix, RandomOverSampler | accuracy score and confusion matrix, SMOTE 
 :------------------------:|:---------------------------------:
