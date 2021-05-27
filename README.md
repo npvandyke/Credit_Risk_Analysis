@@ -15,7 +15,7 @@ The image below is a key to the confusion matrices which will be discussed in th
  These diagnostic results are used in generating the accuracy scores and classification report for each model. 
  - `Accuracy` is measured as the percentage of correct diagnoses over total diagnoses, or (TP + TN) / (TP + TN + FP + FN).
  - `Precision`, or 'pre', measures the reliability of a positive classification, and is thus also known as the positive predictive value. It is calculated as TP / (TP + FP).  
- - `Sensitivity`, or 'rec' for 'recall', measures the percentage, or proportion, of true positives out of all the samples that have the condition. It is calculated as TP / (TP + FN)
+ - `Sensitivity`, or 'rec' for 'recall', measures the percentage, or proportion, of true positives out of all the samples that have the condition. It is calculated as TP / (TP + FN).
 - `The F1 Score`, also known as the 'harmonic mean', can be thought of as a measure of the imbalance between precision and sensitivity scores, with a pronounced imbalance yielding a low F1 Score. It is calculated as 2(Precision * Sensitivity) / (Precision + Sensitivity). 
 
 Below is an image illustrating the difference between precision and sensitivity. As can be deduced, precision may be the better measure when it is important that a positive diagnosis is correct a high percentage of the time, where sensitivity may be the better measure when it is important not to miss any positive diagnoses. 
@@ -51,15 +51,15 @@ The precision for both models is once again perfect for positively predicting in
 :-------------------------:|:---------------------------------:
 ![ClusterCentroids_classification_report](Images/ClusterCentroids_classification_report.png) | ![SMOTEENN_classification_report](Images/SMOTEENN_classification_report.png)
 
-The final two machine-learning models, RandomForest and EasyEnsemble, used ensemble learning techniques to combine multiple "weak learning" models in order to.... 
+The final two machine-learning models, RandomForest and EasyEnsemble, used ensemble learning techniques to combine multiple "weak learning" models in order to improve the accuracy and robustness while decreasing the variance in the model. 
 
-*** Discussion of accuracy score and confusion matrix **** 
+The EasyEnsemble model has a high accuracy score, and both models' scores are higher than any others we've seen so far. 
 
 | accuracy score and confusion matrix, RandomForest | accuracy score and confusion matrix, EasyEnsemble 
 :--------------------------:|:------------------------------------:
 ![RandomForest_score_matrix](Images/RandomForest_score_matrix.png) | ![EasyEnsemble_score_matrix](Images/EasyEnsemble_score_matrix.png)
 
-*** Discussion of classification report **** 
+Like all of the previous models, EasyEnsemble has a perfect precision score for positively predicting low risk loans, and a low precision score for positively predicting high risk loans. However, EasyEnsemble's recall scores are high for both categories. Even more interesting, the RandomForest model has a decent precision score for positively predicting *high* risk loans, while not sacrificing the perfect precision we've seen in every model thus far at positively predicting low risk loans.  
 
 | classification report, RandomForest | classification report, EasyEnsemble
 :-------------------------------:|:---------------------------:
