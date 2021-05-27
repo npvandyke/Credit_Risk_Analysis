@@ -4,13 +4,20 @@ Using Python imbalanced-learn and scikit-learn libraries to build and evaluate s
 
 # Overview of the analysis: 
 
-I've evaluated several different supervised machine-learning models for predicting credit risk using the credit card credit dataset from LendingClub, a a peer-to-peer lending services company. Given the imbalanced nature of the credit card credit dataset, with bad loan applications unsurprisingly accounting for a small percentage of the outcomes (in this case 347 out of 68,817 total outcomes), the first four models involve oversampling, undersampling and combination techniques. These techniques adjust the class distribution of the two potential outcomes in the training datasets of the models in order to influence the fit and reduce bias toward the majority class. The distribution of the testing dataset remains random in order to evaluate the performance of the model. The last two models involve ensemble learning techniques, which combine multiple "weak learning" models to improve the accuracy and robustness of the model while avoiding overfitting. The anticipated outcome is that at least one of these models will be sufficient at predicting bad loan applications despite the underrepresentation of bad loan application outcomes in the given dataset. 
+I've evaluated several different supervised machine-learning models for predicting credit risk using a credit card credit dataset from LendingClub, a a peer-to-peer lending services company. Given the imbalanced nature of the credit card credit dataset, with bad loan applications unsurprisingly accounting for a small percentage of the outcomes (in this case 347 out of 68,817 total outcomes), the first four models involve oversampling, undersampling and combination techniques. These techniques adjust the class distribution of the two potential outcomes in the training datasets of the models in order to influence the fit and reduce bias toward the majority class. The distribution of the testing dataset remains random in order to evaluate the performance of the model. The last two models involve ensemble learning techniques, which combine multiple "weak learning" models to improve the accuracy and robustness of the model while avoiding overfitting. The anticipated outcome is that at least one of these models will be sufficient at predicting bad loan applications despite the underrepresentation of bad loan application outcomes in the given dataset. 
 
 # Results: 
 
-The image below is a key to the confusion matrices which will be discussed in the results for each of the following six machine-learning models. In each of the confusion matrices, the numbers listed from top left to bottom right will indicate the diagnostic results "True Positive", "False Negative", "False Positive" and "True Negative" respectively. 
+The image below is a key to the confusion matrices which will be discussed in the results for each of the following six machine-learning models. In each of the confusion matrices, the numbers listed from top left to bottom right will indicate the diagnostic results "True Positive", "False Negative", "False Positive" and "True Negative" respectively.
 
 ![Confusion Matrix Key](Images/confusion_matrix_key.png)
+
+ These diagnostic results are used in generating the accuracy scores and classification report for each model. 
+ - `Accuracy` is measured as the percentage of correct diagnoses over total diagnoses, or (TP + TN) / (TP + TN + FP + FN).
+ - `Precision`, or 'pre', measures the reliability of a positive classification, and is thus also known as the positive predictive value. It is calculated as TP / (TP + FP).  
+ - `Sensitivity`, or 'rec' for 'recall', measures the percentage, or proportion, of true positives out of all the samples that have the condition. It is calculated as TP / (TP + FN)
+- F1 Score = 
+
 
 The first two machine learning models, RandomOverSampler and SMOTE, used oversampling techniques to resample the minority class. In both models the "low risk" and "high risk" outcomes were evened out in the training dataset to account for 51,352 occurences each. 
 
