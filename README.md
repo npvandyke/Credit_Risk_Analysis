@@ -53,7 +53,7 @@ The precision for both models is once again perfect for positively predicting in
 
 The final two machine-learning models, RandomForest and EasyEnsemble, used ensemble learning techniques to combine multiple "weak learning" models in order to improve the accuracy and robustness while decreasing the variance in the model. 
 
-The EasyEnsemble model has a high accuracy score, and both models' scores are higher than any others we've seen so far. 
+The EasyEnsemble model has a high accuracy score, and both models' accuracy scores are higher than any of the previous models. 
 
 | accuracy score and confusion matrix, RandomForest | accuracy score and confusion matrix, EasyEnsemble 
 :--------------------------:|:------------------------------------:
@@ -66,6 +66,13 @@ Like all of the previous models, EasyEnsemble has a perfect precision score for 
 ![RandomForest_classification_report](Images/RandomForest_classification_report.png) | ![EasyEnsemble_classification_report](Images/EasyEnsemble_classification_report.png) 
 
 # Summary: 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. If you do not recommend any of the models, justify your reasoning.
 
-What type of assessment if best for fraud prediction? Why? Which model had the best score for this? 
+With the exception of EasyEnsemble, none of the models had a high accuracy score for predicting credit card risk. All of the models had high precision for positively predicting low risk loans, and only the RandomForest model had good precision for positively predicting high risk loans. Four of the six models had fair, but not good, sensitivity across both low and high risk prediction categories, while RandomForest had perfect sensitivity for low risk loans (but low sensitivity for high risk loans) and EasyEnsemble had high sensitivity for both high and low risk loans. 
+
+As noted earlier in the analysis, accuracy may not be the best measure for assessing model performance in predicting credit card risk, since given the low occurance of high risk loans, a model could have a good accuracy score even while failing to diagnose *any* actual high risk loans. 
+
+Sensitivity/recall may also not be the best measure to assess models in this scenario- including as many "true positive" diagnoses as possible at the expense of potentially including more "false positives" may be preferable in an initial screening test, but under the assumption that this is the only test used to inform a loan approval process, a high sensitivity score for low risk loans doesn't rule out having a high amount of "false positive" low risk loans, in other words missed high risk loans. On the other hand, a high sensitivity score for high risk loans doesn't rule out having a high amount of "false positive" low risk loans, or in other words missed opportunities to generate revenue based on perfectly good loans. 
+
+Precision, or the reliability of positive classification, is potentially the best measure for evaluating model performance in predicting credit card risk. Ideally, a model would have high precision at positively identifying both high risk loans and low risk loans. 
+
+In consideration of these factors, RandomForest easily outperformed all five other models, as it was the only model to have fairly good precision at positively identifying high risk loans, while maintaining the perfect precision seen in all models at positively identifying low risk loans. Whether the performance of this model was sufficient in predicting credit card risk would depend on the risk appetite of the user, since 73% precision for high risk loans still certainly isn't perfect. However, RandomForest still appears to be the most sufficient model at predicting credit card risk out of the six models tested. 
