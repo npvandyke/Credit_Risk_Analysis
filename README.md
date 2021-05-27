@@ -16,33 +16,36 @@ The image below is a key to the confusion matrices which will be discussed in th
  - `Accuracy` is measured as the percentage of correct diagnoses over total diagnoses, or (TP + TN) / (TP + TN + FP + FN).
  - `Precision`, or 'pre', measures the reliability of a positive classification, and is thus also known as the positive predictive value. It is calculated as TP / (TP + FP).  
  - `Sensitivity`, or 'rec' for 'recall', measures the percentage, or proportion, of true positives out of all the samples that have the condition. It is calculated as TP / (TP + FN)
-- F1 Score = 
+- `The F1 Score`, also known as the 'harmonic mean', can be thought of as a measure of the imbalance between precision and sensitivity scores, with a pronounced imbalance yielding a low F1 Score. It is calculated as 2(Precision * Sensitivity) / (Precision + Sensitivity). 
+
+Below is an image illustrating the difference between precision and sensitivity. As can be deduced, precision may be the better measure when it is important that a positive diagnosis is correct a high percentage of the time, where sensitivity may be the better measure when it is important not to miss any positive diagnoses. 
+
+![Precision vs Sensitivity](Images/pre_vs_rec.png)
 
 
-The first two machine learning models, RandomOverSampler and SMOTE, used oversampling techniques to resample the minority class. In both models the "low risk" and "high risk" outcomes were evened out in the training dataset to account for 51,352 occurences each. 
+The first two machine learning models, RandomOverSampler and SMOTE, used oversampling techniques to resample the minority class. In both models the majority "low risk" and minority "high risk" outcomes were evened out in the training dataset to account for 51,352 occurences each. 
 
-*** Discussion of accuracy score and confusion matrix ***
+While a perfect accuracy score on a training dataset may be indicative of an overfitted model, the accuracy scores for both these models are still rather low. However, accuracy may not be the best measure for predicting high risk loans given the infrequency of their occurance. For example, given the known 347 high-risk loans out of 69,164 total loans in the dataset, if a model incorrectly predicted that all 69,164 loans were low risk, it would have an accuracy score of 99.5%, despite missing every single high risk loan. Let's move on to some potentially more informative measures in the classification report below. 
 
 | accuracy score and confusion matrix, RandomOverSampler | accuracy score and confusion matrix, SMOTE 
 :------------------------:|:---------------------------------:
 ![RandomOverSampler_score_and_matrix](Images/RandomOverSampler_score_and_matrix.png) | ![SMOTE_score_matrix](Images/SMOTE_score_matrix.png)
 
-*** Discussion of classification report *** 
+Both oversampling models had perfect precision for positively predicting instances of low risk loans, but extremely low precision for positively predicting instances of high risk loans. The recall (sensitivity) scores for low and high risk predictions are better than 50/50, but not impressive. The F1 scores, which are high for low risk predictions and low for high risk predictions, reflect the drastic differences in precision between low and high risk predictions compared to recall scores which are similar for both categories. The "support" column shows the actual number of occurances of low and high risk loans in the testing dataset. Recall that oversampling evened out the occurences of both categories in the *training* dataset, but the testing dataset remains reflective of the categorical proportions present in the total data.  
 
 | classification report, RandomOverSampler | classification report, SMOTE 
 :---------------------:|:---------------------------:
 ![RandomOverSampler_classification_report](Images/RandomOverSampler_classification_report.png) | ![SMOTE_classification_report](Images/SMOTE_classification_report.png)
 
-The second two machine learning models, ClusterCentroids and SMOTEENN, used undersampling and combination sampling techniques respectively, to...
-In ClusterCentroids, the "low risk" and "high risk" outcomes were evened out in the training dataset to 260 occurences each, making for a relatively small training dataset. In SMOTEENN, the "low risk" and "high risk" outcomes were evened out in the training dataset to 46,389 and 51,351 occurences respectively. 
+The second two machine learning models, ClusterCentroids and SMOTEENN, used undersampling and combination sampling techniques respectively. Undersampling eliminates instances of the majority class (rather than resampling the minority class as in oversampling), where combination sampling combines oversampling and undersampling techniques. In ClusterCentroids, the "low risk" and "high risk" outcomes were evened out in the training dataset to 260 occurences each, making for a relatively small training dataset. In SMOTEENN, the "low risk" and "high risk" outcomes were evened out in the training dataset to 46,389 and 51,351 occurences respectively. 
 
-*** Discussion of accuracy score and confusion matrix *** 
+As in both oversampling models, the accuracy scores for the undersampling and combination sampling models remain low. 
 
 | accuracy score and confusion matrix, ClusterCentroids | accuracy score and confusion matrix, SMOTEENN |
 :----------------------:|:------------------------------:
 ![ClusterCentroids_score_matrix](Images/ClusterCentroids_score_matrix.png) | ![SMOTEENN_score_matrix](Images/SMOTEENN_score_matrix.png)
 
-*** Discussion of classification report *** 
+The precision for both models is once again perfect for positively predicting instances of low risk loans, but extremely low for positively predicting instances of high risk loans. The recall scores are fairly consistent across both categories, with the F1 scores once again reflecting the high imbalance between precision and recall for positively predicting high risk loans. There were 87 actual instances of high risk loans and 17,118 instances of low risk loans in both testing datasets.  
 
 | classification report, ClusterCentroids | classification report, SMOTEENN |
 :-------------------------:|:---------------------------------:
